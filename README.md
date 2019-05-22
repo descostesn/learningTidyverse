@@ -1,6 +1,6 @@
 # Learning Tidyverse
 
-These are personal notes from my learning tidyverse. I will try to compare tidyverse commands with regular base R style.
+These are personal notes from learning tidyverse. I will try to compare tidyverse commands with regular base R style.
 
 # Introduction
 
