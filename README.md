@@ -1,10 +1,10 @@
-# learningTidyverse
+# Learning Tidyverse
 
-This is personal notes from my learning of tidyverse. I will try to compare tidyverse commands with regular base R style.
+These are personal notes from my learning tidyverse. I will try to compare tidyverse commands with regular base R style.
 
 # Introduction
 
-as an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html.
+As an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html.
 
 ## Filter
 
