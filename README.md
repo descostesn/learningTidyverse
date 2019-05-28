@@ -4,7 +4,7 @@ These are personal notes from learning tidyverse. I will try to compare tidyvers
 
 # Introduction
 
-As an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html. Some parts here are copied/pasted from the book.
+As an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html. Some parts here are copied/pasted from the book. The solutions to exercises were verified on https://jrnold.github.io/r4ds-exercise-solutions/transform.html.
 
 ## Filter
 
@@ -158,5 +158,74 @@ Because the value of the missing element matters in NA | FALSE and NA & TRUE, th
 
 
 ## Arrange
+
+To sort a table according to difference columns:
+
+```{r eval = FALSE}
+
+## Tidyverse
+arrange(flights, year, month, day)
+
+## R base
+flightsdf <- as.data.frame(flights)
+flightsdf[order(flightsdf[,"year"], flightsdf[,"month"], flightsdf[,"day"]),]
+```
+Use desc() to re-order by a column in descending order:
+
+```{r eval = FALSE}
+
+## Tidyverse
+arrange(flights, desc(dep_delay))
+
+## R base
+flightsdf[order(flightsdf[,"dep_delay"], decreasing = TRUE),]
+```
+
+Missing values are always sorted at the end (as it is in R base):
+
+```{r eval = FALSE}
+## Tidyverse
+df <- tibble(x = c(5, NA, 2))
+arrange(df, x)
+arrange(df, desc(x))
+
+## R base
+df2 <- data.frame(x=c(5,NA,2))
+df2[order(df2),]
+df2[order(df2, decreasing=T),]
+```
+
+### Exercises
+
+* How could you use arrange() to sort all missing values to the start? (Hint: use is.na()).
+* Sort flights to find the most delayed flights. Find the flights that left earliest.
+* Sort flights to find the fastest flights.
+* Which flights travelled the longest? Which travelled the shortest?
+
+### Solutions
+
+```{r eval = FALSE}
+## How could you use arrange() to sort all missing values to the start? (Hint: use is.na()).
+## Tidyverse 
+arrange(df, desc(is.na(x)),desc(x))
+## R base
+df2[order(is.na(df2), df2, decreasing=T),]
+
+## Sort flights to find the most delayed flights. 
+arrange(flights, desc(dep_delay))
+
+## Find the flights that left earliest.
+arrange(flights, dep_delay)
+
+## Sort flights to find the fastest flights.
+
+arrange(flights, air_time)
+or
+arrange(flights, distance / air_time * 60)
+
+## Which flights travelled the longest? Which travelled the shortest?
+arrange(flights, desc(distance))
+arrange(flights, distance)
+```
 
 
