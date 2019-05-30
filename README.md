@@ -13,7 +13,8 @@ These are personal notes from learning tidyverse. I will try to compare tidyvers
        - [Exercises](#Exercises)
        - [Solutions](#Solutions)
     * [Select](#Select)
-
+        - [Rename](#Rename)
+        
 # Introduction
 
 As an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html. Some parts here are **copied/pasted from the book**. The solutions to exercises were verified on https://jrnold.github.io/r4ds-exercise-solutions/transform.html.
@@ -278,6 +279,8 @@ There are a number of helper functions you can use within select():
   * num_range("x", 1:3): matches x1, x2 and x3.
   
 See ?select for more details.
+
+### Rename
 
 You can also rename columns easily:
 
