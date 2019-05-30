@@ -3,12 +3,16 @@
 These are personal notes from learning tidyverse. I will try to compare tidyverse commands with regular base R style.
 
 # Table of Contents
+
 1. [Introduction](#Introduction)
     * [Filter](#Filter)
       - [Comparison](#Comparison)
       - [Exercises](#Exercises)
       - [Solutions](#Solutions)
-    
+    * [Arrange](#Arrange)
+       - [Exercises](#Exercises)
+       - [Solutions](#Solutions)
+
 # Introduction
 
 As an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html. Some parts here are copied/pasted from the book. The solutions to exercises were verified on https://jrnold.github.io/r4ds-exercise-solutions/transform.html.
