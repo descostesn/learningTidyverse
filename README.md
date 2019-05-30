@@ -12,10 +12,11 @@ These are personal notes from learning tidyverse. I will try to compare tidyvers
     * [Arrange](#Arrange)
        - [Exercises](#Exercises)
        - [Solutions](#Solutions)
+    * [Select](#Select)
 
 # Introduction
 
-As an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html. Some parts here are copied/pasted from the book. The solutions to exercises were verified on https://jrnold.github.io/r4ds-exercise-solutions/transform.html.
+As an introduction, I will follow the chapter 5 of R for data science, https://r4ds.had.co.nz/transform.html. Some parts here are **copied/pasted from the book**. The solutions to exercises were verified on https://jrnold.github.io/r4ds-exercise-solutions/transform.html.
 
 ## Filter
 
@@ -239,4 +240,56 @@ arrange(flights, desc(distance))
 arrange(flights, distance)
 ```
 
+## Select columns with select()
+
+```{r eval = FALSE}
+## Select columns by name
+## Tidyverse 
+select(flights, year, month, day)
+## R base
+head(flights[,c("year", "month", "day")])
+
+## Select all columns between year and day (inclusive)
+## Tidyverse
+select(flights, year:day)
+## R base
+head(flights[,1:3])
+
+## Select all columns except those from year to day (inclusive)
+## Tidyverse
+select(flights, -(year:day))
+## R base
+head(flights[,-(1:3)])
+
+## Move columns at the beginning of the table, use 'everything()'
+## Tidyverse
+select(flights, time_hour, air_time, everything())
+## R base
+head(flights[, c("time_hour", "air_time", colnames(flights)[-c(19,15)])])
+```
+
+There are a number of helper functions you can use within select():
+
+  * starts_with("abc"): matches names that begin with “abc”.
+  * ends_with("xyz"): matches names that end with “xyz”.
+  * contains("ijk"): matches names that contain “ijk”.
+  * matches("(.)\\1"): selects variables that match a regular expression. This one matches any variables that contain      
+    repeated characters. You’ll learn more about regular expressions in strings.
+  * num_range("x", 1:3): matches x1, x2 and x3.
+  
+See ?select for more details.
+
+You can also rename columns easily:
+
+```{r eval = FALSE}
+## Tidyverse
+result1 <- rename(flights, tail_num = tailnum)
+## R base
+result2 <- flights
+colname_vec <- colnames(result2)
+colname_vec[which(colname_vec == "tailnum")] <- "tail_num"
+colnames(result2) <- colname_vec
+
+isTRUE(all.equal(result1,result2))
+```
 
